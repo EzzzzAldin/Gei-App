@@ -145,6 +145,11 @@
   transition: all 0.5s;
 }
 
+.login-form button a {
+  color: var(--off-white);
+  text-decoration: none;
+}
+
 .login-form button:hover {
   background-color: #08223e;
 }
@@ -160,6 +165,20 @@
 .login-form .icons img {
   max-width: 100%;
   margin: 5px;
+}
+
+.error-request,
+.lodaing {
+  text-align: center;
+  background-color: tomato;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: var(--off-white);
+  font-size: 20px;
+}
+
+.lodaing {
+  background-color: var(--primary);
 }
 
 @media (max-width: 992px) {

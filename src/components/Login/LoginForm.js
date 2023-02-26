@@ -1,3 +1,8 @@
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
 import useInput from "../../hooks/use-input";
 
 // Import Of Styles
@@ -9,36 +14,67 @@ import girl from "../../shared/assets/images/undraw_profile_pic_re_iwgo.svg";
 import shape2 from "../../shared/assets/images/undraw_educator_re_ju47.svg";
 import shape3 from "../../shared/assets/images/undraw_projections_re_ulc6.svg";
 import shape4 from "../../shared/assets/images/undraw_predictive_analytics_re_wxt8.svg";
+import AuthContext from "../../store/auth-context";
 
 const LoginForm = (props) => {
+  const authCtx = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  // To Handel Errors Of Request
+  const [isError, setIsError] = useState("");
+  const [isLodaing, setIsLodaing] = useState(false);
+
+  // Validate From React
   const {
     value: entredEmail,
-    valueIsValid: emailIsValid,
     hasError: emailInvalid,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset,
   } = useInput((value) => value.includes("@"));
 
   const {
     value: entredPassword,
-    valueIsValid: passwordIsValid,
     hasError: passwordInvalid,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordlBlurHandler,
-    reset: resetPassword,
   } = useInput((value) => value.length >= 6);
-
-  let formIsValid = false;
-
-  if (emailIsValid && passwordIsValid) formIsValid = true;
 
   const loginHandler = (event) => {
     event.preventDefault();
 
-    if (!formIsValid) return;
-    reset();
-    resetPassword();
+    setIsLodaing(true);
+
+    async function login() {
+      try {
+        const res = await axios.post("http://127.0.0.1:3000/login", {
+          email: entredEmail,
+          password: entredPassword,
+        });
+
+        setIsLodaing(false);
+
+        if (res.status === 200) {
+          setIsError("");
+          await authCtx.login(res.data.token);
+          const getRes = await axios.get("http://127.0.0.1:3000/user", {
+            headers: {
+              token: res.data.token,
+            },
+          });
+          const statusUser = await getRes.data.status;
+          if (statusUser === "Admin") {
+            navigate("/admin", { replace: true });
+          } else {
+            navigate("/", { replace: true });
+          }
+        }
+      } catch (error) {
+        setIsLodaing(false);
+        setIsError(error.response.data);
+      }
+    }
+
+    login();
   };
 
   let emailClasses = emailInvalid ? "error" : "email-form";
@@ -65,7 +101,11 @@ const LoginForm = (props) => {
       <div className={classes.logo}>
         <img src={logo} alt="logo" />
       </div>
-      <form className={classes["login-form"]} onSubmit={loginHandler}>
+      <form
+        className={classes["login-form"]}
+        onSubmit={loginHandler}
+        // action="/admin"
+      >
         <div className={classes.icons}>
           <img src={boy} alt="boy" />
           <img src={girl} alt="girl" />
@@ -91,6 +131,10 @@ const LoginForm = (props) => {
           {passwordInvalid && <p>Must Be Valid Password.</p>}
         </div>
         <button>Login</button>
+        {isError.length > 0 && (
+          <div className={classes["error-request"]}>{isError}</div>
+        )}
+        {isLodaing && <div className={classes["lodaing"]}>Loading...</div>}
       </form>
     </section>
   );
