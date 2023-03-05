@@ -101,11 +101,7 @@ const LoginForm = (props) => {
       <div className={classes.logo}>
         <img src={logo} alt="logo" />
       </div>
-      <form
-        className={classes["login-form"]}
-        onSubmit={loginHandler}
-        // action="/admin"
-      >
+      <form className={classes["login-form"]} onSubmit={loginHandler}>
         <div className={classes.icons}>
           <img src={boy} alt="boy" />
           <img src={girl} alt="girl" />

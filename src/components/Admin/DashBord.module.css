@@ -64,7 +64,7 @@
   display: flex;
   justify-content: space-around;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .total p {
@@ -159,4 +159,15 @@
 .messenger-close {
   height: 7%;
   margin-top: 118%;
+}
+
+.card a {
+  text-align: center;
+  text-decoration: none;
+  color: #363434;
+  font-size: 18px;
+}
+
+.card a p {
+  margin-bottom: 0;
 }

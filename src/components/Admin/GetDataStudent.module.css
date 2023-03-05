@@ -1,0 +1,118 @@
+.main-section {
+  background-color: #f7faff;
+  height: 100vh;
+}
+
+.main-section a {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  padding: 15px;
+}
+
+.main-section a img {
+  width: 7%;
+}
+
+.data-student,
+.data-student-full {
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  height: 15vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.9s;
+}
+
+.data-student-full {
+  height: 75vh;
+  justify-content: flex-start;
+  gap: 70px;
+}
+
+.search,
+.error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.search input,
+.error input {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+}
+
+.search i,
+.error i {
+  font-size: 25px;
+}
+
+.search button,
+.error button {
+  border: none;
+  background-color: var(--off-white);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.search button:hover,
+.error button:hover {
+  background-color: #c6ccd2;
+}
+
+.error p {
+  font-size: 15px;
+  color: tomato;
+  font-weight: bold;
+  margin: 0;
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.info {
+  align-self: flex-start;
+  margin-left: 45px;
+  width: 100%;
+  transition: all 0.8s;
+}
+
+.subject {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  max-width: 90%;
+  margin: 15px;
+  transition: all 0.8s;
+}
+
+.subject h4 {
+  margin: 0;
+}
+
+.username {
+  position: relative;
+}
+
+.username::after {
+  content: "";
+  position: absolute;
+  background-color: var(--primary);
+  width: 25%;
+  height: 5%;
+  top: 100%;
+}

@@ -1,0 +1,166 @@
+.main-section {
+  background-color: #f7faff;
+  height: 100vh;
+}
+
+.main-section a {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  padding: 15px;
+}
+
+.main-section a img {
+  width: 7%;
+}
+
+.card,
+.student-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--primary);
+  height: 550px;
+  margin-top: 100px;
+  padding: 0;
+}
+
+.card .img,
+.student-card .img {
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card .img img,
+.student-card .img img {
+  max-width: 100%;
+}
+
+.card h3,
+.student-card h3 {
+  font-size: 30px;
+  position: relative;
+}
+
+.card h3::after,
+.student-card h3::after {
+  content: "";
+  position: absolute;
+  height: 12%;
+  width: 85%;
+  background-color: var(--primary);
+  bottom: -15px;
+  left: 10%;
+}
+
+.student-card h3::after {
+  background-color: #3930ca;
+}
+
+.card button,
+.student-card button {
+  padding: 0;
+  width: 40%;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.8s;
+  position: relative;
+  z-index: 1;
+  margin-top: 40px;
+}
+
+.student-card button {
+  border: 2px solid #3930ca;
+  color: #3930ca;
+}
+
+.card button a,
+.student-card button a {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+  text-align: center;
+}
+
+.student-card button a {
+  color: #3930ca;
+}
+
+.card button::after,
+.student-card button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: -2;
+}
+
+.card button::before,
+.student-card button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary);
+  transition: all 0.8s;
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.student-card button::before {
+  background-color: #3930ca;
+}
+
+.card:hover button a,
+.student-card:hover button a {
+  color: #fff;
+}
+
+.card:hover button::before,
+.student-card:hover button::before {
+  width: 100%;
+}
+
+.card .img::before,
+.student-card .img::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary);
+  opacity: 0.4;
+}
+
+.student-card .img::before {
+  background-color: #3930ca;
+}
+
+.card .img::after,
+.student-card .img::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--off-white);
+  z-index: 9;
+  left: 0;
+  top: 68%;
+  transform: skew(0deg, 25deg);
+  transition: all 0.8s;
+}
+
+.card:hover .img::after,
+.student-card:hover .img::after {
+  transform: skew(0deg, -25deg);
+}
