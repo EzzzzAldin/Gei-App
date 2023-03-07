@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+// Styles
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import classes from "./DashBord.module.css";
-
+import MainNavigation from "../layout/MainNavigation";
 import logo from "../../shared/assets/images/GE_Logo.png";
 import admin from "../../shared/assets/images/undraw_pic_profile_re_7g2h.svg";
 import team from "../../shared/assets/images/undraw_engineering_team_a7n2.svg";
-
-// Pages
 
 const DashBord = () => {
   const [closemsg, setClosemsg] = useState(true);
@@ -66,7 +65,8 @@ const DashBord = () => {
 
   return (
     <section className={`${classes["main-section"]}`}>
-      <div className="row">
+      <MainNavigation />
+      <div className="row mt-3">
         <div
           className={`col-2 d-flex flex-column align-items-center ${classes["main-info"]}`}
         >
@@ -108,30 +108,22 @@ const DashBord = () => {
                 </Link>
               </div>
               <div className={`col-3 ${classes.card} mb-4 offset-1`}>
-                <Link to="/admin/student-data">
-                  <div className={classes.icon}>
-                    <i className="fa-solid fa-user-graduate"></i>
-                  </div>
-                  <p>Get Data Of Student</p>
-                </Link>
-              </div>
-              <div className={`col-3 ${classes.card} mb-4 offset-1`}>
-                <Link to="/">
+                <Link to="/admin/add-level">
                   <div className={classes.icon}>
                     <i className="fa-solid fa-chart-simple"></i>
                   </div>
                   <p>Add Level to Student</p>
                 </Link>
               </div>
-              <div className={`col-3 ${classes.card} mb-4`}>
-                <Link to="/">
+              <div className={`col-3 ${classes.card} mb-4 offset-1`}>
+                <Link to="/admin/add-subjects">
                   <div className={classes.icon}>
                     <i className="fa-solid fa-book-bookmark"></i>
                   </div>
                   <p>Add Subjects to Student</p>
                 </Link>
               </div>
-              <div className={`col-3 ${classes.card} mb-4 offset-1`}>
+              <div className={`col-3 ${classes.card} mb-4`}>
                 <Link to="/">
                   <div className={classes.icon}>
                     <i className="fa-solid fa-building-columns"></i>
@@ -140,11 +132,19 @@ const DashBord = () => {
                 </Link>
               </div>
               <div className={`col-3 ${classes.card} mb-4 offset-1`}>
-                <Link to="/">
+                <Link to="/admin/add-degrees">
                   <div className={classes.icon}>
                     <i className="fa-solid fa-square-poll-horizontal"></i>
                   </div>
                   <p>Add Grades to Student</p>
+                </Link>
+              </div>
+              <div className={`col-3 ${classes.card} mb-4 offset-1`}>
+                <Link to="/admin/student-data">
+                  <div className={classes.icon}>
+                    <i className="fa-solid fa-user-graduate"></i>
+                  </div>
+                  <p>Get Data Of Student</p>
                 </Link>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -19,7 +18,6 @@ import AuthContext from "../../store/auth-context";
 const LoginForm = (props) => {
   const authCtx = useContext(AuthContext);
 
-  const navigate = useNavigate();
   // To Handel Errors Of Request
   const [isError, setIsError] = useState("");
   const [isLodaing, setIsLodaing] = useState(false);
@@ -56,17 +54,6 @@ const LoginForm = (props) => {
         if (res.status === 200) {
           setIsError("");
           await authCtx.login(res.data.token);
-          const getRes = await axios.get("http://127.0.0.1:3000/user", {
-            headers: {
-              token: res.data.token,
-            },
-          });
-          const statusUser = await getRes.data.status;
-          if (statusUser === "Admin") {
-            navigate("/admin", { replace: true });
-          } else {
-            navigate("/", { replace: true });
-          }
         }
       } catch (error) {
         setIsLodaing(false);

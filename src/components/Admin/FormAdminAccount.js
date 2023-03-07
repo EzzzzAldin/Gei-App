@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import useInput from "../../hooks/use-input";
 
 import classes from "./FormAdminAccount.module.css";
-import logo from "../../shared/assets/images/GE_Logo.png";
+
 import boy from "../../shared/assets/images/undraw_pic_profile_re_7g2h.svg";
 import sign from "../../shared/assets/images/undraw_sign__up_nm4k.svg";
 import el from "../../shared/assets/images/undraw_electricity_k2ft.svg";
+import MainNavigation from "../layout/MainNavigation";
 
 const FormAdminAccount = () => {
   const [isError, setIsError] = useState("");
@@ -93,9 +93,7 @@ const FormAdminAccount = () => {
 
   return (
     <section className={classes["main-section"]}>
-      <Link to="/admin">
-        <img src={logo} alt="logo" />
-      </Link>
+      <MainNavigation />
       <form className={classes["signup-form"]} onSubmit={signupHandler}>
         <div className={classes.icons}>
           <img src={boy} alt="boy" />

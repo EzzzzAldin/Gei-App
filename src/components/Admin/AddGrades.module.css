@@ -41,9 +41,10 @@
 }
 
 .data-student-full {
-  height: 75vh;
+  height: 95vh;
   justify-content: flex-start;
   gap: 70px;
+  padding-bottom: 10px;
 }
 
 .search,
@@ -105,32 +106,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 90%;
+  max-width: 80%;
 }
 
-.subject {
-  border-radius: 5px;
+.data-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   max-width: 90%;
-  margin: 15px 0;
-  transition: all 0.8s;
 }
 
-.subject h4 {
+h4 {
   margin: 0;
-}
-
-.empty {
-  background-color: tomato;
-  color: #fff;
-  padding: 15px;
-  width: 80%;
-  text-align: center;
-  border-radius: 5px;
 }
 
 .shape,
@@ -146,4 +133,25 @@
   max-width: 15%;
   left: -2%;
   top: 10%;
+}
+
+.btns-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btns-group button {
+  background-color: var(--primary);
+  color: var(--off-white);
+}
+
+.btns-group button:hover {
+  background-color: #0b325c;
+  color: var(--off-white);
+}
+
+.err-alret {
+  text-align: center;
+  width: 90%;
 }

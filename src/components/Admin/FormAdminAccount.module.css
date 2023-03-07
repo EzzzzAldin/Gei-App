@@ -42,17 +42,6 @@
   top: 10%;
 }
 
-.main-section a {
-  display: block;
-  width: 100%;
-  background-color: transparent;
-  padding: 15px;
-}
-
-.main-section a img {
-  width: 7%;
-}
-
 .signup-form {
   display: flex;
   flex-direction: column;

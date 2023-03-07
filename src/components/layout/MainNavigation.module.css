@@ -1,0 +1,16 @@
+.nav a img {
+  width: 30%;
+}
+
+.btn {
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.8s;
+}
+
+.btn:hover {
+  background-color: var(--primary);
+  color: #fff;
+}

@@ -1,0 +1,25 @@
+.data-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90%;
+}
+
+h4 {
+  margin: 0;
+}
+
+.data-form button {
+  background-color: var(--primary);
+  color: var(--off-white);
+}
+
+.data-form button:hover {
+  background-color: #0b325c;
+  color: var(--off-white);
+}
+
+h4,
+.data-form button {
+  align-self: flex-end;
+}

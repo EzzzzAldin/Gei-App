@@ -7,36 +7,58 @@ import CreateAccount from "./components/Admin/CreateAccount";
 import FormAdminAccount from "./components/Admin/FormAdminAccount";
 import FormStudentAccount from "./components/Admin/FormStudentAccount";
 import GetDataStudent from "./components/Admin/GetDataStudent";
+import AddLevel from "./components/Admin/AddLevel";
+import AddSubjects from "./components/Admin/AddSubjects";
+import AddGrades from "./components/Admin/AddGrades";
 import AuthContext from "./store/auth-context";
 
 function App() {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
+  const isAdmin = authCtx.isAdmin;
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<h1>GEI App</h1>} />
-        {!isLoggedIn && <Route path="/login" element={<Login />} />}
-        {isLoggedIn && <Route path="/admin" element={<HomeAdmin />} />}
         {isLoggedIn && (
+          <Route
+            path="/"
+            element={
+              isAdmin ? <Navigate to="/admin" replace /> : <h1>GEI App</h1>
+            }
+          />
+        )}
+        {!isLoggedIn && <Route path="/login" element={<Login />} />}
+        {isLoggedIn && isAdmin && (
+          <Route path="/admin" element={<HomeAdmin />} />
+        )}
+        {isLoggedIn && isAdmin && (
           <Route path="/admin/create-account" element={<CreateAccount />} />
         )}
-        {isLoggedIn && (
+        {isLoggedIn && isAdmin && (
           <Route
             path="/admin/create-account/form-admin"
             element={<FormAdminAccount />}
           />
         )}
-        {isLoggedIn && (
+        {isLoggedIn && isAdmin && (
           <Route
             path="/admin/create-account/form-student"
             element={<FormStudentAccount />}
           />
         )}
-        {isLoggedIn && (
+        {isLoggedIn && isAdmin && (
           <Route path="/admin/student-data" element={<GetDataStudent />} />
+        )}
+        {isLoggedIn && isAdmin && (
+          <Route path="/admin/add-level" element={<AddLevel />} />
+        )}
+        {isLoggedIn && isAdmin && (
+          <Route path="/admin/add-subjects" element={<AddSubjects />} />
+        )}
+        {isLoggedIn && isAdmin && (
+          <Route path="/admin/add-degrees" element={<AddGrades />} />
         )}
         {!isLoggedIn && (
           <Route path="*" element={<Navigate to="/login" replace />} />

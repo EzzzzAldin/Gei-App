@@ -3,17 +3,6 @@
   height: 100vh;
 }
 
-.main-section a {
-  display: block;
-  width: 100%;
-  background-color: transparent;
-  padding: 15px;
-}
-
-.main-section a img {
-  width: 7%;
-}
-
 .card,
 .student-card {
   display: flex;
@@ -61,7 +50,7 @@
 
 .card button,
 .student-card button {
-  padding: 0;
+  padding: 10px;
   width: 40%;
   border: 2px solid var(--primary);
   border-radius: 5px;
