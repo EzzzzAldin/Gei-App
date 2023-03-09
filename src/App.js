@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import Login from "./pages/Login";
 import HomeAdmin from "./pages/HomeAdmin";
 import CreateAccount from "./components/Admin/CreateAccount";
