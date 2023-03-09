@@ -9,10 +9,8 @@ import sign from "../../shared/assets/images/undraw_sign__up_nm4k.svg";
 import el from "../../shared/assets/images/undraw_electricity_k2ft.svg";
 import MainNavigation from "../layout/MainNavigation";
 
-let id = 0;
-
 const AddSubjects = () => {
-  const [subjects, setSubjects] = useState([{}]);
+  const [subjects, setSubjects] = useState([]);
   const [addSubjects, setAddSubjects] = useState("");
   const [error, setError] = useState(false);
 
@@ -21,15 +19,16 @@ const AddSubjects = () => {
   const inpRef = useRef();
 
   const addSubjectHandler = () => {
-    setSubjects([...subjects, { subject: inpRef.current.value, degree: 0 }]);
+    setSubjects([...subjects, { subject: "", degree: 0 }]);
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
+
     const entredEmail = inputEmailRef.current.value;
     const entredLevel = inputLevellRef.current.value;
+
     try {
-      subjects.shift();
       const token = await localStorage.getItem("token");
       const postSubject = {
         email: entredEmail,
@@ -54,14 +53,14 @@ const AddSubjects = () => {
     }
   };
 
-  let subjectsContent = subjects.map((subject, index) => (
+  let subjectsContent = subjects.map((subjectItem, index) => (
     <div key={index} className="mb-3">
-      <Form.Label>New Subject</Form.Label>
+      <Form.Label>Add Subject</Form.Label>
       <input
         type="text"
         className="form-control"
         placeholder="Name Subject"
-        ref={inpRef}
+        onChange={(e) => (subjectItem.subject = e.target.value)}
       />
     </div>
   ));
@@ -104,7 +103,7 @@ const AddSubjects = () => {
           </Form>
           {addSubjects.length > 0 && (
             <div className="alert alert-success mt-3" role="alert">
-              Success Added Level
+              Success Added Subject
             </div>
           )}
           {error.length > 0 && (
