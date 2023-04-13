@@ -1,0 +1,121 @@
+.main-section {
+  background-color: #f7faff;
+  height: 100vh;
+  position: relative;
+}
+
+.main-section::before {
+  content: "";
+  position: absolute;
+  width: 15%;
+  height: 29%;
+  background-color: var(--primary);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  left: 0;
+  top: 20%;
+}
+
+.main-section::after {
+  content: "";
+  position: absolute;
+  width: 15%;
+  height: 29%;
+  background-color: var(--primary);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  right: 0;
+  bottom: 1%;
+}
+
+.shape,
+.shape-left {
+  position: absolute;
+  max-width: 15%;
+  right: 0%;
+  bottom: 5%;
+  z-index: 5;
+}
+
+.shape-left {
+  max-width: 15%;
+  left: 0%;
+  top: 22%;
+}
+
+.cards {
+  margin: 60px auto;
+  width: 50%;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.card {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  background-color: var(--primary);
+  width: 1%;
+  height: 0%;
+  top: 0;
+  left: 0;
+  transition: 0.8s;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  background-color: var(--primary);
+  width: 1%;
+  height: 0%;
+  bottom: 0;
+  right: 0;
+  transition: 0.8s;
+}
+
+.card:hover::before,
+.card:hover::after {
+  height: 100%;
+}
+
+.card span {
+  color: var(--primary);
+  border-right: 2px solid;
+  margin-right: 10px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.card h3 {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-section {
+    height: auto;
+    overflow: scroll;
+  }
+
+  .main-section::before,
+  .main-section::after {
+    display: none;
+  }
+
+  .shape,
+  .shape-left {
+    display: none;
+  }
+
+  .card h3 {
+    font-size: 10px;
+    font-weight: bold;
+  }
+}

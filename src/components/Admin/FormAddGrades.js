@@ -14,7 +14,7 @@ const FormAddGrades = (props) => {
   const addSubjectHandler = () => {
     const newSubj = {
       subject: props.subject,
-      degree: grade,
+      degree: parseInt(grade),
     };
 
     props.onAddedNewSubject(newSubj);

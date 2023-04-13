@@ -1,0 +1,102 @@
+.main-section {
+  background-color: #f7faff;
+  padding: 0 40px;
+  position: relative;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 50px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  transition: all 0.5s;
+  position: relative;
+  cursor: pointer;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  background-color: var(--primary);
+  width: 0;
+  height: 1%;
+  top: 0;
+  transition: all 0.5s;
+}
+
+.card:hover {
+  transform: translate(0, -5%);
+}
+
+.card:hover::after {
+  width: 100%;
+}
+
+.icon {
+  font-size: 60px;
+  color: var(--primary);
+}
+
+.card a {
+  text-align: center;
+  text-decoration: none;
+  color: #363434;
+  font-size: 18px;
+}
+
+.card a p {
+  margin-bottom: 0;
+}
+
+.info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bacground {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bacground img {
+  width: 60%;
+  position: relative;
+  animation: move-up-down 2s ease-in-out infinite;
+}
+
+@keyframes move-up-down {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -50px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.name {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name h3 {
+  font-size: 60px;
+}
+
+.name .welcome {
+  color: var(--primary);
+  font-size: 45px;
+}

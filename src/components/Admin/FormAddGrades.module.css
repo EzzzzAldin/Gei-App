@@ -23,3 +23,8 @@ h4,
 .data-form button {
   align-self: flex-end;
 }
+
+.disabled-btn {
+  background-color: rgba(17, 69, 127, 0.6);
+  cursor: not-allowed;
+}

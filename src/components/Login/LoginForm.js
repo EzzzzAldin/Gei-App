@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-
 import axios from "axios";
 
 import useInput from "../../hooks/use-input";
@@ -14,6 +13,7 @@ import shape2 from "../../shared/assets/images/undraw_educator_re_ju47.svg";
 import shape3 from "../../shared/assets/images/undraw_projections_re_ulc6.svg";
 import shape4 from "../../shared/assets/images/undraw_predictive_analytics_re_wxt8.svg";
 import AuthContext from "../../store/auth-context";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const LoginForm = (props) => {
   const authCtx = useContext(AuthContext);
@@ -49,11 +49,11 @@ const LoginForm = (props) => {
           password: entredPassword,
         });
 
-        setIsLodaing(false);
-
         if (res.status === 200) {
           setIsError("");
           await authCtx.login(res.data.token);
+          window.location.reload();
+          setIsLodaing(false);
         }
       } catch (error) {
         setIsLodaing(false);
@@ -117,8 +117,11 @@ const LoginForm = (props) => {
         {isError.length > 0 && (
           <div className={classes["error-request"]}>{isError}</div>
         )}
-        {isLodaing && <div className={classes["lodaing"]}>Loading...</div>}
+        {isLodaing && <LoadingSpinner />}
       </form>
+      <footer>
+        <p>&copy; 2023 Ezz Aldin. All rights reserved.</p>
+      </footer>
     </section>
   );
 };

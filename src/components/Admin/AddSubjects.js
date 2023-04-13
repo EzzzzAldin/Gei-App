@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import Select from "react-select";
 import axios from "axios";
 
 import classes from "./AddSubjects.module.css";
@@ -8,15 +9,45 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import sign from "../../shared/assets/images/undraw_sign__up_nm4k.svg";
 import el from "../../shared/assets/images/undraw_electricity_k2ft.svg";
 import MainNavigation from "../layout/MainNavigation";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const AddSubjects = () => {
   const [subjects, setSubjects] = useState([]);
   const [addSubjects, setAddSubjects] = useState("");
   const [error, setError] = useState(false);
+  const [emails, setEmails] = useState([]);
+  const [isLodaing, setIsLodaing] = useState(false);
 
-  const inputEmailRef = useRef();
   const inputLevellRef = useRef();
-  const inpRef = useRef();
+
+  useEffect(() => {
+    const getStudenstData = async () => {
+      try {
+        const token = await localStorage.getItem("token");
+        const res = await axios.get(
+          "http://127.0.0.1:3000/admin/data-students",
+          {
+            headers: {
+              token: token,
+            },
+          }
+        );
+
+        setEmails(res.data.allEmailStudents);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getStudenstData();
+  }, []);
+
+  const options = emails;
+
+  const [selectedEmail, setSelectedEmail] = useState(null);
+
+  const changeEmailHandler = (option) => {
+    setSelectedEmail(option);
+  };
 
   const addSubjectHandler = () => {
     setSubjects([...subjects, { subject: "", degree: 0 }]);
@@ -25,8 +56,10 @@ const AddSubjects = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const entredEmail = inputEmailRef.current.value;
+    const entredEmail = selectedEmail.value;
     const entredLevel = inputLevellRef.current.value;
+
+    setIsLodaing(true);
 
     try {
       const token = await localStorage.getItem("token");
@@ -45,9 +78,11 @@ const AddSubjects = () => {
         }
       );
 
+      setIsLodaing(false);
       setAddSubjects(res.data.message);
       setError("");
     } catch (error) {
+      setIsLodaing(false);
       setError(error.response.data);
       setAddSubjects("");
     }
@@ -72,11 +107,12 @@ const AddSubjects = () => {
         <div className={`col-4 ${classes["data-student"]} offset-4 pb-5`}>
           <Form className="mt-5" onSubmit={submitHandler}>
             <div className="mb-3">
-              <Form.Label>Email address</Form.Label>
-              <input
-                type="email"
-                className="form-control"
-                ref={inputEmailRef}
+              <Select
+                className="mt-4"
+                value={selectedEmail}
+                onChange={changeEmailHandler}
+                options={options}
+                placeholder="Select Email"
               />
             </div>
             <div className="mb-3">
@@ -111,6 +147,7 @@ const AddSubjects = () => {
               {error}
             </div>
           )}
+          {isLodaing && <LoadingSpinner />}
         </div>
       </div>
       <img src={sign} alt="team" className={classes.shape} />

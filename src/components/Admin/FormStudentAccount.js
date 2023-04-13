@@ -8,10 +8,12 @@ import boy from "../../shared/assets/images/undraw_pic_profile_re_7g2h.svg";
 import sign from "../../shared/assets/images/undraw_sign__up_nm4k.svg";
 import el from "../../shared/assets/images/undraw_books_re_8gea.svg";
 import MainNavigation from "../layout/MainNavigation";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const FormStudentAccount = () => {
   const [isError, setIsError] = useState("");
   const [isSucces, setIsSucces] = useState("");
+  const [isLodaing, setIsLodaing] = useState(false);
 
   // Validate From React
   const {
@@ -49,6 +51,8 @@ const FormStudentAccount = () => {
   const signupHandler = (event) => {
     event.preventDefault();
 
+    setIsLodaing(true);
+
     async function signup() {
       try {
         const token = await localStorage.getItem("token");
@@ -68,6 +72,8 @@ const FormStudentAccount = () => {
           }
         );
 
+        setIsLodaing(false);
+
         if (res.status === 200) {
           setIsError("");
           setIsSucces(res.data.message);
@@ -77,6 +83,7 @@ const FormStudentAccount = () => {
           resetRepassword();
         }
       } catch (error) {
+        setIsLodaing(false);
         setIsError(error.response.data);
         setIsSucces("");
       }
@@ -144,6 +151,7 @@ const FormStudentAccount = () => {
         {isSucces.length > 0 && (
           <div className={classes["succes"]}>{isSucces}</div>
         )}
+        {isLodaing && <LoadingSpinner />}
       </form>
       <img src={sign} alt="team" className={classes.shape} />
       <img src={el} alt="team" className={classes["shape-left"]} />
